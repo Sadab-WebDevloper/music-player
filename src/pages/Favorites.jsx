@@ -41,7 +41,7 @@ export default function Favorites() {
 
 
   return (
-    <div className="flex flex-col gap-6 pb-20 select-none">
+    <div className="flex flex-col gap-6 pb-20 select-none animate-fade-in">
       {/* Header Profile */}
       <div className="flex flex-col md:flex-row items-center md:items-end gap-6 bg-gradient-to-b from-indigo-950 via-purple-950 to-neutral-950 p-6 md:p-8 rounded-2xl border border-neutral-900 shadow-xl">
         <div className="w-48 h-48 bg-gradient-to-br from-violet-600 to-indigo-800 rounded-xl flex items-center justify-center overflow-hidden flex-shrink-0 shadow-2xl">

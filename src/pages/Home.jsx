@@ -58,25 +58,40 @@ export default function Home() {
     fetchRecent();
   }, []);
 
-  const getGreeting = () => {
+  const getGreetingData = () => {
     const hour = new Date().getHours();
-    if (hour < 12) return 'Good morning';
-    if (hour < 18) return 'Good afternoon';
-    return 'Good evening';
+    if (hour >= 5 && hour < 12) return {
+      title: 'Good morning, Sadab',
+      subtext: 'Start your day with the perfect soundtrack. Enjoy energetic beats and fresh vibes.'
+    };
+    if (hour >= 12 && hour < 17) return {
+      title: 'Good afternoon, Sadab',
+      subtext: 'Keep the momentum going. Dive into your favorite playlists and discover new hits.'
+    };
+    if (hour >= 17 && hour < 21) return {
+      title: 'Good evening, Sadab',
+      subtext: 'Unwind and relax. Enjoy soothing melodies and your ultimate favorites.'
+    };
+    return {
+      title: 'Good night, Sadab',
+      subtext: 'Let the music play on. Tune into late-night vibes and deep tracks.'
+    };
   };
+
+  const { title, subtext } = getGreetingData();
 
   const handleSongPlay = (song, index, queue) => {
     dispatch(playSong({ song, index, queue }));
   };
 
   return (
-    <div className="flex flex-col gap-8 pb-12 select-none">
+    <div className="flex flex-col gap-8 pb-12 select-none animate-fade-in">
       {/* Hero Header */}
       <div className="relative rounded-2xl bg-gradient-to-r from-emerald-800 to-neutral-900 p-6 md:p-10 overflow-hidden shadow-2xl flex items-center justify-between min-h-[200px]">
         <div className="flex flex-col gap-3 max-w-lg z-10">
-          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white">{getGreeting()}</h1>
+          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white">{title}</h1>
           <p className="text-neutral-300 text-sm md:text-base leading-relaxed">
-            Welcome to the ultimate music destination. Enjoy full legal streams, custom user playlists, and Bollywood favorites.
+            {subtext}
           </p>
         </div>
         <div className="absolute right-0 bottom-0 top-0 opacity-10 md:opacity-20 pointer-events-none z-0">

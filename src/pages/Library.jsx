@@ -43,7 +43,7 @@ export default function Library() {
 
 
   return (
-    <div className="flex flex-col gap-6 pb-16 select-none relative">
+    <div className="flex flex-col gap-6 pb-16 select-none relative animate-fade-in">
       <div className="flex items-center justify-between border-b border-neutral-900 pb-4">
         <h1 className="text-3xl font-extrabold tracking-tight">Your Library</h1>
         <button

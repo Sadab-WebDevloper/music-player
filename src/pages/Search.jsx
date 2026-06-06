@@ -31,10 +31,10 @@ export default function Search() {
     const delayDebounce = setTimeout(() => {
       if (query.trim()) {
         performSearch(query);
-        setSearchParams({ query });
+        setSearchParams({ query }, { replace: true });
       } else {
         setResults([]);
-        setSearchParams({});
+        setSearchParams({}, { replace: true });
       }
     }, 400); // 400ms debounce
 
@@ -113,7 +113,7 @@ export default function Search() {
   const topResult = results[0];
 
   return (
-    <div className="flex flex-col gap-6 pb-16 select-none relative">
+    <div className="flex flex-col gap-6 pb-16 select-none relative animate-fade-in">
       {/* Search Input Box */}
       <div className="flex items-center gap-3 bg-neutral-900 border border-neutral-800 rounded-full px-5 py-3.5 max-w-xl shadow-lg sticky top-0 z-10">
         <SearchIcon className="text-neutral-400" size={22} />
@@ -353,7 +353,7 @@ export default function Search() {
                   key={cat}
                   onClick={() => {
                     setQuery(cat);
-                    setSearchParams({ query: cat });
+                    setSearchParams({ query: cat }, { replace: true });
                   }}
                   className={`bg-gradient-to-br ${gradients[i % gradients.length]} h-36 rounded-xl p-4 flex flex-col justify-between hover:scale-103 active:scale-97 cursor-pointer shadow-lg relative overflow-hidden transition-all duration-300 group`}
                 >
