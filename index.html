@@ -1,125 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- SEO Meta Tags -->
-    <title>NeonWave Music Player | Premium Web Audio Experience</title>
-    <meta name="description" content="NeonWave — a stunning glassmorphism music player built with HTML, CSS & JavaScript. Enjoy tracks with beautiful visuals and smooth controls.">
-    <meta name="keywords" content="music player, web music player, glassmorphism, HTML CSS JavaScript, audio player, NeonWave">
-    <meta name="author" content="Sadab">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph / Social -->
-    <meta property="og:title" content="NeonWave Music Player">
-    <meta property="og:description" content="A premium glassmorphism music player with animated visuals and smooth audio controls.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="image/1.jpg">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="NeonWave Music Player">
-    <meta name="twitter:description" content="A stunning web-based music player with glassmorphism UI.">
-
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#0a0a14">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="image/favicon.png">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <!-- Layered animated aurora background -->
-    <div class="aurora-bg">
-        <div class="aurora-layer aurora-1"></div>
-        <div class="aurora-layer aurora-2"></div>
-        <div class="aurora-layer aurora-3"></div>
-        <div class="aurora-layer aurora-4"></div>
-        <div class="aurora-layer aurora-5"></div>
-    </div>
-
-    <!-- Particle canvas -->
-    <canvas id="particles-canvas"></canvas>
-
-    <!-- ===== PLAYER CARD ===== -->
-    <main class="player-container" role="main" aria-label="Music Player">
-
-        <!-- Album Art -->
-        <div class="album-art-wrapper">
-            <div class="album-glow" id="album-glow"></div>
-            <div class="album-art" id="album-art">
-                <img src="image/1.jpg" alt="Album Art — Born To Shine" id="cover-image">
-                <div class="vinyl-hole"></div>
-            </div>
-        </div>
-
-        <!-- Track Info -->
-        <div class="track-info">
-            <h1 id="title">Born To Shine</h1>
-            <p id="artist">Diljit Dosanjh</p>
-        </div>
-
-        <!-- Progress Bar -->
-        <div class="progress-section">
-            <span id="current-time" class="time-label">0:00</span>
-            <div class="progress-container" id="progress-container">
-                <div class="progress-bg"></div>
-                <div class="progress" id="progress"></div>
-                <div class="progress-thumb" id="progress-thumb"></div>
-            </div>
-            <span id="duration" class="time-label">0:00</span>
-        </div>
-
-        <!-- Controls -->
-        <div class="controls">
-            <button id="shuffle" class="control-btn control-btn-sm" title="Shuffle" aria-label="Shuffle">
-                <i class="fas fa-random"></i>
-            </button>
-            <button id="prev" class="control-btn" title="Previous" aria-label="Previous Track">
-                <i class="fas fa-backward-step"></i>
-            </button>
-            <button id="play" class="control-btn control-btn-play" title="Play" aria-label="Play or Pause">
-                <i class="fas fa-play" id="play-icon"></i>
-            </button>
-            <button id="next" class="control-btn" title="Next" aria-label="Next Track">
-                <i class="fas fa-forward-step"></i>
-            </button>
-            <button id="repeat" class="control-btn control-btn-sm" title="Repeat" aria-label="Repeat">
-                <i class="fas fa-repeat"></i>
-            </button>
-        </div>
-
-        <!-- Volume Control -->
-        <div class="volume-section">
-            <button class="volume-btn" id="mute-btn" aria-label="Mute or Unmute">
-                <i class="fas fa-volume-low" id="mute-icon"></i>
-            </button>
-            <div class="volume-track">
-                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" aria-label="Volume">
-            </div>
-        </div>
-
-        <!-- Playlist -->
-        <div class="playlist-section">
-            <button class="playlist-toggle" id="playlist-toggle">
-                <i class="fas fa-list"></i>
-                <span>Playlist</span>
-                <i class="fas fa-chevron-down playlist-arrow" id="playlist-arrow"></i>
-            </button>
-            <ul class="playlist" id="playlist"></ul>
-        </div>
-    </main>
-
-    <!-- Audio Element -->
-    <audio id="audio" preload="metadata"></audio>
-
-    <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    
+    <!-- Google Fonts for Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <title>Neonwave - Premium Streaming Web App</title>
+  </head>
+  <body class="bg-neutral-950 font-sans text-neutral-100">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
