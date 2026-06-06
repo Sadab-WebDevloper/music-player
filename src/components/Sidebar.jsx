@@ -73,7 +73,7 @@ export default function Sidebar() {
 
         {/* Footer */}
         <div className="text-xs text-neutral-600 text-center py-2">
-          <span>Premium streaming v1.0</span>
+          <span>Created by Sadab Mamu</span>
         </div>
       </aside>
 
