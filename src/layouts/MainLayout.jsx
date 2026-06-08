@@ -93,11 +93,9 @@ export default function MainLayout() {
   };
 
   // Progress Seek Interaction
-  const handleProgressClick = (e) => {
+  const handleSeekChange = (e) => {
     if (!durationState || !audioRef.current) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const newTime = (clickX / rect.width) * durationState;
+    const newTime = parseFloat(e.target.value);
     audioRef.current.currentTime = newTime;
     setCurrentTimeState(newTime);
   };
@@ -197,7 +195,7 @@ export default function MainLayout() {
       <BottomPlayer 
         currentTime={currentTimeState}
         duration={durationState}
-        onProgressClick={handleProgressClick}
+        onSeekChange={handleSeekChange}
         volume={volume}
         handleVolumeChange={handleVolumeChange}
         toggleMute={toggleMute}

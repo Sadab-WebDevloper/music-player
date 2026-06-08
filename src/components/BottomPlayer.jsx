@@ -13,7 +13,7 @@ import { toggleLikeSong as apiToggleLike } from '../services/api';
 export default function BottomPlayer({ 
   currentTime, 
   duration, 
-  onProgressClick,
+  onSeekChange,
   volume,
   handleVolumeChange,
   toggleMute,
@@ -126,19 +126,16 @@ export default function BottomPlayer({
           {/* Seek Bar */}
           <div className="w-full flex items-center gap-2.5 text-xs text-neutral-400">
             <span>{formatTime(currentTime)}</span>
-            <div 
-              onClick={onProgressClick}
-              className="flex-grow h-1.5 bg-white/10 rounded-full cursor-pointer relative group"
-            >
-              <div 
-                className="h-full bg-neutral-400 group-hover:bg-[#00f3ff] group-hover:neon-box-cyan rounded-full transition-all"
-                style={{ width: `${progressPct}%` }}
-              />
-              <div 
-                className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow"
-                style={{ left: `calc(${progressPct}% - 6px)` }}
-              />
-            </div>
+            <input 
+              type="range" 
+              min="0" max={duration || 0} step="0.1" 
+              value={currentTime || 0} 
+              onChange={onSeekChange}
+              className="flex-grow h-1.5 rounded-full appearance-none cursor-pointer bg-neutral-800 accent-[#00f3ff] hover:accent-[#00f3ff] outline-none"
+              style={{
+                background: `linear-gradient(to right, #00f3ff ${progressPct}%, rgba(255,255,255,0.1) ${progressPct}%)`
+              }}
+            />
             <span>{formatTime(duration)}</span>
           </div>
         </div>
@@ -247,19 +244,16 @@ export default function BottomPlayer({
 
               {/* Seek Bar */}
               <div className="flex flex-col gap-2">
-                <div 
-                  onClick={onProgressClick}
-                  className="w-full h-2 bg-neutral-800 rounded-full cursor-pointer relative group"
-                >
-                  <div 
-                    className="h-full bg-[#00f3ff] neon-box-cyan rounded-full"
-                    style={{ width: `${progressPct}%` }}
-                  />
-                  <div 
-                    className="absolute top-1/2 -translate-y-1/2 w-4.5 h-4.5 bg-white rounded-full opacity-100 shadow"
-                    style={{ left: `calc(${progressPct}% - 9px)` }}
-                  />
-                </div>
+                <input 
+                  type="range" 
+                  min="0" max={duration || 0} step="0.1" 
+                  value={currentTime || 0} 
+                  onChange={onSeekChange}
+                  className="w-full h-2 rounded-full appearance-none cursor-pointer bg-neutral-800 accent-[#00f3ff] hover:accent-[#00f3ff] outline-none"
+                  style={{
+                    background: `linear-gradient(to right, #00f3ff ${progressPct}%, rgba(255,255,255,0.1) ${progressPct}%)`
+                  }}
+                />
                 <div className="flex justify-between text-sm text-neutral-400">
                   <span>{formatTime(currentTime)}</span>
                   <span>{formatTime(duration)}</span>
