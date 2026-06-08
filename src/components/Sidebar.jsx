@@ -16,12 +16,12 @@ export default function Sidebar() {
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex flex-col w-64 bg-black h-full text-neutral-400 p-4 border-r border-neutral-900 justify-between select-none">
+      <aside className="hidden md:flex flex-col w-64 glass h-full text-neutral-400 p-4 border-r border-white/5 justify-between select-none">
         <div className="flex flex-col gap-6">
           {/* Logo */}
           <div className="flex items-center gap-2 px-6 py-4 mt-2 select-none pointer-events-none">
-            <Radio size={28} className="text-[#1db954]" />
-            <span className="font-extrabold text-xl tracking-tight">Neonwave</span>
+            <Radio size={28} className="text-[#00f3ff] drop-shadow-[0_0_8px_rgba(0,243,255,0.8)]" />
+            <span className="font-extrabold text-xl tracking-tight text-white neon-text-cyan">Neonwave</span>
           </div>
 
           {/* Navigation Links */}
@@ -33,8 +33,8 @@ export default function Sidebar() {
                   key={item.to}
                   to={item.to}
                   className={({ isActive }) =>
-                    `flex items-center gap-4 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:text-white hover:bg-neutral-900 ${
-                      isActive ? 'bg-neutral-900 text-white font-semibold' : ''
+                    `flex items-center gap-4 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 hover:text-white hover:bg-white/5 ${
+                      isActive ? 'bg-white/10 text-[#00f3ff] neon-text-cyan border-l-2 border-[#00f3ff]' : ''
                     }`
                   }
                 >
@@ -59,8 +59,8 @@ export default function Sidebar() {
                   key={playlist.id}
                   to={`/playlist/${playlist.id}`}
                   className={({ isActive }) =>
-                    `text-sm truncate py-1 transition hover:text-white ${
-                      isActive ? 'text-[#1db954] font-medium' : ''
+                    `text-sm truncate py-1 transition-all duration-300 hover:text-white ${
+                      isActive ? 'text-[#00f3ff] neon-text-cyan font-semibold' : ''
                     }`
                   }
                 >
@@ -78,7 +78,7 @@ export default function Sidebar() {
       </aside>
 
       {/* Mobile Bottom Navigation */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-neutral-950/90 backdrop-blur-md border-t border-neutral-900 flex justify-around items-center py-2 z-50">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 player-glass flex justify-around items-center py-2 z-50">
         {navItems.map((item) => {
           const Icon = item.icon;
           return (
@@ -87,7 +87,7 @@ export default function Sidebar() {
               to={item.to}
               className={({ isActive }) =>
                 `flex flex-col items-center gap-1 text-xs py-1 px-3 transition-colors ${
-                  isActive ? 'text-[#1db954]' : 'text-neutral-500'
+                  isActive ? 'text-[#00f3ff] neon-text-cyan' : 'text-neutral-500'
                 }`
               }
             >

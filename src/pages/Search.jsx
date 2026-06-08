@@ -159,7 +159,7 @@ export default function Search() {
                   </div>
 
                   {/* Play Button Overlay */}
-                  <div className="absolute right-6 bottom-6 bg-[#1db954] text-black w-14 h-14 rounded-full flex items-center justify-center shadow-2xl opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition duration-300 hover:scale-105 active:scale-95 cursor-pointer">
+                  <div className="absolute right-6 bottom-6 bg-[#00f3ff] text-black w-14 h-14 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(0,243,255,0.8)] opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition duration-300 hover:scale-105 active:scale-95 cursor-pointer">
                     {currentSong?.id === topResult.id && isPlaying ? (
                       <Pause size={24} fill="black" />
                     ) : (
@@ -199,7 +199,7 @@ export default function Search() {
                           </div>
                         </div>
                         <div className="min-w-0">
-                          <p className={`text-sm font-semibold truncate ${isCurrent ? 'text-[#1db954]' : 'text-white'}`}>
+                          <p className={`text-sm font-semibold truncate ${isCurrent ? 'text-[#00f3ff] neon-text-cyan' : 'text-white'}`}>
                             {highlightText(song.title, query)}
                           </p>
                           <p className="text-xs text-neutral-400 truncate mt-1">
@@ -212,10 +212,10 @@ export default function Search() {
                       <div className="flex items-center gap-4 text-neutral-400">
                         {/* Favorite button */}
                         <button 
-                          onClick={(e) => { e.stopPropagation(); handleLike(song); }}
-                          className={`hover:text-white transition cursor-pointer ${isLiked ? 'text-[#1db954]' : ''}`}
+                          onClick={(e) => handleLike(e, song)}
+                          className={`hover:text-white transition cursor-pointer ${isLiked ? 'text-[#00f3ff]' : ''}`}
                         >
-                          <Heart size={16} fill={isLiked ? '#1db954' : 'none'} />
+                          <Heart size={16} fill={isLiked ? '#00f3ff' : 'none'} />
                         </button>
 
                         {/* Add to playlist dropdown trigger */}
@@ -294,7 +294,7 @@ export default function Search() {
                     <div className="col-span-8 sm:col-span-5 flex items-center gap-3 min-w-0">
                       <img src={song.cover} className="w-9 h-9 rounded object-cover" />
                       <div className="min-w-0">
-                        <p className={`font-semibold truncate text-sm ${isCurrent ? 'text-[#1db954]' : 'text-white'}`}>
+                        <p className={`font-semibold truncate text-sm ${isCurrent ? 'text-[#00f3ff] neon-text-cyan' : 'text-white'}`}>
                           {highlightText(song.title, query)}
                         </p>
                         <p className="text-xs text-neutral-400 truncate mt-0.5">
@@ -316,10 +316,10 @@ export default function Search() {
                     {/* Duration / Options */}
                     <div className="col-span-2 sm:col-span-1 text-right flex items-center justify-end gap-3 pr-2">
                       <button 
-                        onClick={(e) => { e.stopPropagation(); handleLike(song); }}
-                        className={`hover:text-white transition cursor-pointer text-neutral-400 ${isLiked ? 'text-[#1db954]' : ''}`}
+                        onClick={(e) => handleLike(e, song)}
+                        className={`hover:text-white transition cursor-pointer text-neutral-400 ${isLiked ? 'text-[#00f3ff]' : ''}`}
                       >
-                        <Heart size={14} fill={isLiked ? '#1db954' : 'none'} />
+                        <Heart size={14} fill={isLiked ? '#00f3ff' : 'none'} />
                       </button>
                       <span className="text-neutral-400 text-xs hidden sm:block">{formatDuration(song.duration)}</span>
                     </div>

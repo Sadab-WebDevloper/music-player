@@ -111,7 +111,7 @@ export default function PlaylistDetail() {
         </div>
         
         <div className="flex flex-col items-center md:items-start text-center md:text-left gap-2 flex-grow">
-          <span className="text-xs uppercase font-extrabold tracking-widest text-[#1db954]">Playlist</span>
+          <span className="text-xs uppercase font-extrabold tracking-widest text-[#00f3ff] neon-text-cyan">Playlist</span>
           <h1 className="text-4xl md:text-5xl font-black text-white">{playlist.name}</h1>
           <p className="text-sm text-neutral-400 mt-1">{playlist.description || 'No description provided'}</p>
           <div className="flex items-center gap-2 text-xs text-neutral-500 font-medium mt-2">
@@ -135,7 +135,7 @@ export default function PlaylistDetail() {
         <div className="flex items-center gap-4 py-2">
           <button
             onClick={handlePlayAll}
-            className="bg-[#1db954] hover:bg-[#1ed760] text-black w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition transform hover:scale-105 active:scale-95 cursor-pointer"
+            className="bg-[#00f3ff] hover:bg-[#00f3ff] text-black w-14 h-14 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(0,243,255,0.8)] transition transform hover:scale-105 active:scale-95 cursor-pointer"
           >
             {playlist.songs.some(s => s.id === currentSong?.id) && isPlaying ? (
               <Pause size={24} fill="black" />
@@ -183,7 +183,7 @@ export default function PlaylistDetail() {
                 <div className="col-span-8 sm:col-span-5 flex items-center gap-3 min-w-0">
                   <img src={song.cover} className="w-10 h-10 rounded object-cover shadow" />
                   <div className="min-w-0">
-                    <p className={`font-semibold truncate ${isCurrent ? 'text-[#1db954]' : 'text-white'}`}>
+                    <p className={`font-semibold truncate ${isCurrent ? 'text-[#00f3ff] neon-text-cyan' : 'text-white'}`}>
                       {song.title}
                     </p>
                     <p className="text-xs text-neutral-400 truncate mt-0.5">{song.artist}</p>
@@ -204,9 +204,9 @@ export default function PlaylistDetail() {
                 <div className="col-span-2 sm:col-span-1 text-right flex items-center justify-end gap-3.5 pr-2 text-neutral-400">
                   <button 
                     onClick={(e) => { e.stopPropagation(); handleLike(song); }}
-                    className={`hover:text-white transition cursor-pointer ${isLiked ? 'text-[#1db954]' : ''}`}
+                    className={`hover:text-white transition cursor-pointer ${isLiked ? 'text-[#00f3ff]' : ''}`}
                   >
-                    <Heart size={14} fill={isLiked ? '#1db954' : 'none'} />
+                    <Heart size={14} fill={isLiked ? '#00f3ff' : 'none'} />
                   </button>
                   <button 
                     onClick={(e) => { e.stopPropagation(); handleRemoveTrack(song.id); }}

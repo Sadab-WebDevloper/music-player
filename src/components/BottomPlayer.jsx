@@ -76,9 +76,9 @@ export default function BottomPlayer({
           </div>
           <button 
             onClick={handleLike}
-            className={`hidden md:block p-1.5 transition-colors cursor-pointer ${isLiked ? 'text-[#1db954]' : 'text-neutral-400 hover:text-white'}`}
+            className={`hidden md:block p-1.5 transition-colors cursor-pointer ${isLiked ? 'text-[#00f3ff] neon-text-cyan' : 'text-neutral-400 hover:text-white'}`}
           >
-            <Heart size={18} fill={isLiked ? '#1db954' : 'none'} />
+            <Heart size={18} fill={isLiked ? '#00f3ff' : 'none'} />
           </button>
         </div>
 
@@ -88,7 +88,7 @@ export default function BottomPlayer({
           <div className="flex items-center gap-5">
             <button 
               onClick={() => dispatch(toggleShuffle())}
-              className={`p-1 transition-colors cursor-pointer ${isShuffle ? 'text-[#1db954]' : 'text-neutral-400 hover:text-white'}`}
+              className={`p-1 transition-colors cursor-pointer ${isShuffle ? 'text-[#00f3ff] neon-text-cyan' : 'text-neutral-400 hover:text-white'}`}
               title="Shuffle"
             >
               <Shuffle size={18} />
@@ -102,7 +102,7 @@ export default function BottomPlayer({
             </button>
             <button 
               onClick={() => dispatch(togglePlay())}
-              className="bg-white hover:scale-105 active:scale-95 text-black p-2.5 rounded-full transition-all flex items-center justify-center shadow-md cursor-pointer"
+              className="bg-white hover:scale-105 active:scale-95 text-black p-2.5 rounded-full transition-all flex items-center justify-center shadow-[0_0_15px_rgba(0,243,255,0.6)] cursor-pointer"
               title={isPlaying ? "Pause" : "Play"}
             >
               {isPlaying ? <Pause size={20} fill="black" /> : <Play size={20} fill="black" className="translate-x-[1px]" />}
@@ -116,7 +116,7 @@ export default function BottomPlayer({
             </button>
             <button 
               onClick={() => dispatch(toggleRepeat())}
-              className={`p-1 transition-colors cursor-pointer ${isRepeat ? 'text-[#1db954]' : 'text-neutral-400 hover:text-white'}`}
+              className={`p-1 transition-colors cursor-pointer ${isRepeat ? 'text-[#00f3ff] neon-text-cyan' : 'text-neutral-400 hover:text-white'}`}
               title="Repeat"
             >
               <Repeat size={18} />
@@ -128,10 +128,10 @@ export default function BottomPlayer({
             <span>{formatTime(currentTime)}</span>
             <div 
               onClick={onProgressClick}
-              className="flex-grow h-1.5 bg-neutral-800 rounded-full cursor-pointer relative group"
+              className="flex-grow h-1.5 bg-white/10 rounded-full cursor-pointer relative group"
             >
               <div 
-                className="h-full bg-neutral-400 group-hover:bg-[#1db954] rounded-full transition-colors"
+                className="h-full bg-neutral-400 group-hover:bg-[#00f3ff] group-hover:neon-box-cyan rounded-full transition-all"
                 style={{ width: `${progressPct}%` }}
               />
               <div 
@@ -147,7 +147,7 @@ export default function BottomPlayer({
         <div className="hidden md:flex items-center justify-end gap-3.5 w-1/3 min-w-[150px]">
           <button 
             onClick={() => setShowQueue(!showQueue)}
-            className={`p-1.5 transition-colors cursor-pointer ${showQueue ? 'text-[#1db954]' : 'text-neutral-400 hover:text-white'}`}
+            className={`p-1.5 transition-colors cursor-pointer ${showQueue ? 'text-[#00f3ff] neon-text-cyan' : 'text-neutral-400 hover:text-white'}`}
             title="Queue"
           >
             <ListMusic size={20} />
@@ -165,9 +165,9 @@ export default function BottomPlayer({
               min="0" max="1" step="0.01" 
               value={volume} 
               onChange={handleVolumeChange}
-              className="w-20 md:w-24 h-1 rounded-full appearance-none cursor-pointer bg-neutral-800 accent-[#1db954] hover:accent-[#1db954] outline-none"
+              className="w-20 md:w-24 h-1 rounded-full appearance-none cursor-pointer bg-neutral-800 accent-[#00f3ff] hover:accent-[#00f3ff] outline-none"
               style={{
-                background: `linear-gradient(to right, #1db954 ${volumePct}%, #262626 ${volumePct}%)`
+                background: `linear-gradient(to right, #00f3ff ${volumePct}%, rgba(255,255,255,0.1) ${volumePct}%)`
               }}
             />
           </div>
@@ -184,9 +184,9 @@ export default function BottomPlayer({
         <div className="flex md:hidden items-center justify-end gap-3 flex-shrink-0">
           <button 
             onClick={handleLike}
-            className={`p-1.5 transition-colors cursor-pointer ${isLiked ? 'text-[#1db954]' : 'text-neutral-400'}`}
+            className={`p-1.5 transition-colors cursor-pointer ${isLiked ? 'text-[#00f3ff] neon-text-cyan' : 'text-neutral-400'}`}
           >
-            <Heart size={20} fill={isLiked ? '#1db954' : 'none'} />
+            <Heart size={20} fill={isLiked ? '#00f3ff' : 'none'} />
           </button>
           <button 
             onClick={(e) => { e.stopPropagation(); dispatch(togglePlay()); }}
@@ -212,7 +212,7 @@ export default function BottomPlayer({
             <span className="text-xs uppercase tracking-widest font-bold">Now Playing</span>
             <button 
               onClick={() => setShowQueue(!showQueue)}
-              className={`p-1 transition-colors cursor-pointer ${showQueue ? 'text-[#1db954]' : 'hover:text-white'}`}
+              className={`p-1 transition-colors cursor-pointer ${showQueue ? 'text-[#00f3ff] neon-text-cyan' : 'hover:text-white'}`}
             >
               <ListMusic size={20} />
             </button>
@@ -221,13 +221,13 @@ export default function BottomPlayer({
           {/* Body Content */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-12 flex-grow max-w-5xl mx-auto w-full">
             {/* Left Cover Art */}
-            <div className="w-64 h-64 md:w-96 md:h-96 relative flex-shrink-0 group">
+            <div className="w-64 h-64 md:w-96 md:h-96 relative flex-shrink-0 group transition duration-500 hover:scale-105">
               <img 
                 src={currentSong.cover} 
                 alt={currentSong.title} 
-                className="w-full h-full rounded-2xl object-cover shadow-2xl transition duration-500 group-hover:scale-105"
+                className="w-full h-full rounded-2xl object-cover shadow-2xl"
               />
-              <div className="absolute inset-0 rounded-2xl bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <div className="absolute inset-0 rounded-2xl bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
                 <Music4 className="text-white animate-pulse" size={48} />
               </div>
             </div>
@@ -237,8 +237,8 @@ export default function BottomPlayer({
               <div>
                 <div className="flex items-center justify-between gap-4">
                   <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight truncate">{currentSong.title}</h1>
-                  <button onClick={handleLike} className="text-[#1db954] cursor-pointer">
-                    <Heart size={28} fill={isLiked ? '#1db954' : 'none'} className={isLiked ? 'text-[#1db954]' : 'text-neutral-400 hover:text-white'} />
+                  <button onClick={handleLike} className="text-[#00f3ff] cursor-pointer">
+                    <Heart size={28} fill={isLiked ? '#00f3ff' : 'none'} className={isLiked ? 'text-[#00f3ff] neon-text-cyan' : 'text-neutral-400 hover:text-white'} />
                   </button>
                 </div>
                 <p className="text-lg text-neutral-400 mt-2">{currentSong.artist}</p>
@@ -252,7 +252,7 @@ export default function BottomPlayer({
                   className="w-full h-2 bg-neutral-800 rounded-full cursor-pointer relative group"
                 >
                   <div 
-                    className="h-full bg-[#1db954] rounded-full"
+                    className="h-full bg-[#00f3ff] neon-box-cyan rounded-full"
                     style={{ width: `${progressPct}%` }}
                   />
                   <div 
@@ -270,7 +270,7 @@ export default function BottomPlayer({
               <div className="flex items-center justify-center gap-8 mt-4">
                 <button 
                   onClick={() => dispatch(toggleShuffle())}
-                  className={`p-2 transition-colors cursor-pointer ${isShuffle ? 'text-[#1db954]' : 'text-neutral-400 hover:text-white'}`}
+                  className={`p-2 transition-colors cursor-pointer ${isShuffle ? 'text-[#00f3ff] neon-text-cyan' : 'text-neutral-400 hover:text-white'}`}
                 >
                   <Shuffle size={24} />
                 </button>
@@ -282,7 +282,7 @@ export default function BottomPlayer({
                 </button>
                 <button 
                   onClick={() => dispatch(togglePlay())}
-                  className="bg-white hover:scale-105 active:scale-95 text-black p-5 rounded-full transition shadow-xl flex items-center justify-center cursor-pointer"
+                  className="bg-white hover:scale-105 active:scale-95 text-black p-5 rounded-full transition shadow-[0_0_30px_rgba(0,243,255,0.6)] flex items-center justify-center cursor-pointer"
                 >
                   {isPlaying ? <Pause size={36} fill="black" /> : <Play size={36} fill="black" className="translate-x-1" />}
                 </button>
@@ -294,7 +294,7 @@ export default function BottomPlayer({
                 </button>
                 <button 
                   onClick={() => dispatch(toggleRepeat())}
-                  className={`p-2 transition-colors cursor-pointer ${isRepeat ? 'text-[#1db954]' : 'text-neutral-400 hover:text-white'}`}
+                  className={`p-2 transition-colors cursor-pointer ${isRepeat ? 'text-[#00f3ff] neon-text-cyan' : 'text-neutral-400 hover:text-white'}`}
                 >
                   <Repeat size={24} />
                 </button>
@@ -308,7 +308,7 @@ export default function BottomPlayer({
                   min="0" max="1" step="0.01" 
                   value={volume} 
                   onChange={handleVolumeChange}
-                  className="flex-grow h-1.5 rounded-full appearance-none cursor-pointer bg-neutral-800 accent-[#1db954]"
+                  className="flex-grow h-1.5 rounded-full appearance-none cursor-pointer bg-neutral-800 accent-[#00f3ff]"
                 />
               </div> */}
             </div>

@@ -48,7 +48,7 @@ export default function Library() {
         <h1 className="text-3xl font-extrabold tracking-tight">Your Library</h1>
         <button
           onClick={() => setShowCreateModal(true)}
-          className="flex items-center gap-2 bg-[#1db954] hover:bg-[#1ed760] text-black font-semibold text-sm px-4 py-2.5 rounded-full shadow transition transform hover:scale-103 active:scale-97 cursor-pointer"
+          className="flex items-center gap-2 bg-[#00f3ff] hover:bg-[#00f3ff] text-black font-semibold text-sm px-4 py-2.5 rounded-full shadow-[0_0_15px_rgba(0,243,255,0.6)] transition transform hover:scale-105 active:scale-95 cursor-pointer"
         >
           <Plus size={18} />
           <span>Create Playlist</span>
@@ -101,7 +101,7 @@ export default function Library() {
             </div>
 
             <div className="min-w-0">
-              <h3 className="font-bold text-base truncate text-white group-hover:text-[#1db954] transition-colors">{playlist.name}</h3>
+              <h3 className="font-bold text-base truncate text-white group-hover:text-[#00f3ff] group-hover:neon-text-cyan transition-colors">{playlist.name}</h3>
               <p className="text-xs text-neutral-400 truncate mt-1">
                 Playlist • {playlist.isPrivate ? 'Private' : 'Public'}
               </p>
@@ -131,7 +131,7 @@ export default function Library() {
                   required
                   value={playlistName}
                   onChange={(e) => setPlaylistName(e.target.value)}
-                  className="bg-neutral-950 border border-neutral-800 focus:border-[#1db954] rounded-lg p-3 outline-none text-white transition-colors"
+                  className="bg-white/5 border border-white/10 focus:border-[#00f3ff] focus:ring-1 focus:ring-[#00f3ff] rounded-lg p-3 outline-none text-white transition-colors"
                 />
               </div>
 
@@ -142,7 +142,7 @@ export default function Library() {
                   rows={3}
                   value={playlistDesc}
                   onChange={(e) => setPlaylistDesc(e.target.value)}
-                  className="bg-neutral-950 border border-neutral-800 focus:border-[#1db954] rounded-lg p-3 outline-none text-white resize-none transition-colors"
+                  className="bg-white/5 border border-white/10 focus:border-[#00f3ff] focus:ring-1 focus:ring-[#00f3ff] rounded-lg p-3 outline-none text-white resize-none transition-colors"
                 />
               </div>
 
@@ -153,7 +153,7 @@ export default function Library() {
                     id="isPrivate"
                     checked={isPrivate}
                     onChange={(e) => setIsPrivate(e.target.checked)}
-                    className="w-4 h-4 bg-neutral-950 accent-[#1db954] cursor-pointer"
+                    className="w-4 h-4 bg-white/5 accent-[#00f3ff] cursor-pointer"
                   />
                   <label htmlFor="isPrivate" className="text-sm text-neutral-300 select-none cursor-pointer">Private Playlist</label>
                 </div>

@@ -91,7 +91,7 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-8 pb-12 select-none animate-fade-in">
       {/* Hero Header */}
-      <div className="relative rounded-2xl bg-gradient-to-r from-emerald-800 to-neutral-900 p-6 md:p-10 overflow-hidden shadow-2xl flex items-center justify-between min-h-[200px]">
+      <div className="relative rounded-2xl bg-gradient-to-r from-fuchsia-600 via-purple-700 to-indigo-900 p-6 md:p-10 overflow-hidden shadow-[0_0_40px_rgba(255,0,255,0.3)] flex items-center justify-between min-h-[200px]">
         <div className="flex flex-col gap-3 max-w-lg z-10">
           <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white">{title}</h1>
           <p className="text-neutral-300 text-sm md:text-base leading-relaxed">

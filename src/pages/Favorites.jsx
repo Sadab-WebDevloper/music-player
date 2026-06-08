@@ -57,7 +57,7 @@ export default function Favorites() {
         </div>
         
         <div className="flex flex-col items-center md:items-start text-center md:text-left gap-2 flex-grow">
-          <span className="text-xs uppercase font-extrabold tracking-widest text-[#1db954]">Collection</span>
+          <span className="text-xs uppercase font-extrabold tracking-widest text-[#00f3ff] neon-text-cyan">Collection</span>
           <h1 className="text-4xl md:text-5xl font-black text-white">Liked Songs</h1>
           <div className="flex items-center gap-2 text-xs text-neutral-500 font-medium mt-2">
             <span>{favorites.length} {favorites.length === 1 ? 'song' : 'songs'}</span>
@@ -70,7 +70,7 @@ export default function Favorites() {
         <div className="flex items-center gap-4 py-2">
           <button
             onClick={handlePlayAll}
-            className="bg-[#1db954] hover:bg-[#1ed760] text-black w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition transform hover:scale-105 active:scale-95 cursor-pointer"
+            className="bg-[#00f3ff] hover:bg-[#00f3ff] text-black w-14 h-14 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(0,243,255,0.8)] transition transform hover:scale-105 active:scale-95 cursor-pointer"
           >
             {favorites.some(s => s.id === currentSong?.id) && isPlaying ? (
               <Pause size={24} fill="black" />
@@ -117,7 +117,7 @@ export default function Favorites() {
                 <div className="col-span-8 sm:col-span-5 flex items-center gap-3 min-w-0">
                   <img src={song.cover} className="w-10 h-10 rounded object-cover shadow" />
                   <div className="min-w-0">
-                    <p className={`font-semibold truncate ${isCurrent ? 'text-[#1db954]' : 'text-white'}`}>
+                    <p className={`font-semibold truncate ${isCurrent ? 'text-[#00f3ff] neon-text-cyan' : 'text-white'}`}>
                       {song.title}
                     </p>
                     <p className="text-xs text-neutral-400 truncate mt-0.5">{song.artist}</p>
@@ -141,7 +141,7 @@ export default function Favorites() {
                     className="hover:text-red-500 transition duration-200 cursor-pointer"
                     title="Remove from favorites"
                   >
-                    <HeartOff size={14} className="text-[#1db954] hover:text-red-500" fill="#1db954" />
+                    <HeartOff size={14} className="text-[#00f3ff] hover:text-red-500" fill="#00f3ff" />
                   </button>
                   <span className="text-neutral-500 text-xs hidden sm:block">{formatDuration(song.duration)}</span>
                 </div>

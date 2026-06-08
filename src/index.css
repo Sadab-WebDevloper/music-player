@@ -7,7 +7,7 @@
 
 @layer base {
   body {
-    @apply bg-neutral-950 text-neutral-100 font-sans selection:bg-[#1db954] selection:text-black;
+    @apply bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-neutral-100 font-sans selection:bg-[#00f3ff] selection:text-black min-h-screen background-fixed;
   }
   
   h1, h2, h3, h4 {
@@ -36,17 +36,36 @@
 
 /* Glassmorphism Styles */
 .glass {
-  background: rgba(18, 18, 18, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(15, 12, 41, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 243, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 .player-glass {
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(15, 12, 41, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(0, 243, 255, 0.15);
+  box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Neon Glow Utilities */
+.neon-text-cyan {
+  text-shadow: 0 0 8px rgba(0, 243, 255, 0.6), 0 0 16px rgba(0, 243, 255, 0.4);
+}
+
+.neon-text-pink {
+  text-shadow: 0 0 8px rgba(255, 0, 255, 0.6), 0 0 16px rgba(255, 0, 255, 0.4);
+}
+
+.neon-box-cyan {
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(0, 243, 255, 0.3);
+}
+
+.neon-box-pink {
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.5), 0 0 20px rgba(255, 0, 255, 0.3);
 }
 
 /* Animations */
@@ -74,5 +93,5 @@
 
 /* Active sidebar link */
 .active-nav-link {
-  @apply bg-neutral-800 text-white font-semibold;
+  @apply bg-white/10 text-[#00f3ff] font-semibold neon-text-cyan border-l-2 border-[#00f3ff];
 }
