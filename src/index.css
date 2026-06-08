@@ -7,7 +7,7 @@
 
 @layer base {
   body {
-    @apply bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-neutral-100 font-sans selection:bg-[#00f3ff] selection:text-black min-h-screen background-fixed;
+    @apply bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-neutral-100 font-sans selection:bg-[#00f3ff] selection:text-black min-h-screen bg-fixed;
   }
   
   h1, h2, h3, h4 {
@@ -93,5 +93,6 @@
 
 /* Active sidebar link */
 .active-nav-link {
-  @apply bg-white/10 text-[#00f3ff] font-semibold neon-text-cyan border-l-2 border-[#00f3ff];
+  @apply bg-white/10 text-[#00f3ff] font-semibold border-l-2 border-[#00f3ff];
+  text-shadow: 0 0 8px rgba(0, 243, 255, 0.6), 0 0 16px rgba(0, 243, 255, 0.4);
 }
