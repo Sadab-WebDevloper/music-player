@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { 
   Play, Pause, SkipForward, SkipBack, Shuffle, Repeat, 
-  Volume2, Volume1, VolumeX, Maximize2, Minimize2, ListMusic, Heart
+  Volume2, Volume1, VolumeX, Maximize2, Minimize2, ListMusic, Heart, Music4
 } from 'lucide-react';
 import { 
   togglePlay, nextSong, prevSong, toggleShuffle, toggleRepeat, setVolume 
@@ -301,7 +301,7 @@ export default function BottomPlayer({
               </div>
 
               {/* Extra Volume Info in Fullscreen */}
-              <div className="flex items-center justify-center gap-3 mt-4 text-neutral-400 w-2/3 mx-auto">
+              {/* <div className="hidden md:flex items-center justify-center gap-3 mt-4 text-neutral-400 w-2/3 mx-auto">
                 <button onClick={toggleMute} className="cursor-pointer">{getVolumeIcon()}</button>
                 <input 
                   type="range" 
@@ -310,13 +310,8 @@ export default function BottomPlayer({
                   onChange={handleVolumeChange}
                   className="flex-grow h-1.5 rounded-full appearance-none cursor-pointer bg-neutral-800 accent-[#1db954]"
                 />
-              </div>
+              </div> */}
             </div>
-          </div>
-
-          {/* Footer Keyboard shortcut info */}
-          <div className="text-center text-xs text-neutral-500 border-t border-neutral-900 pt-4">
-            <p>Keyboard Shortcuts: Space (Play/Pause) | ← / → (Seek 5s) | ↑ / ↓ (Volume) | N (Next) | P (Prev)</p>
           </div>
         </div>
       )}

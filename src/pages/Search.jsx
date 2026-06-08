@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Search as SearchIcon, Play, Pause, Plus, Heart, Clock, Music } from 'lucide-react';
-import { playSong } from '../redux/slices/playerSlice';
+import { playSong, togglePlay } from '../redux/slices/playerSlice';
 import { toggleFavoriteLocal } from '../redux/slices/playlistSlice';
 import { searchSongs, toggleLikeSong as apiToggleLike, addSongToPlaylist } from '../services/api';
 import { ListSkeleton } from '../components/SkeletonLoader';
@@ -58,7 +58,11 @@ export default function Search() {
   };
 
   const handlePlayTrack = (song, idx) => {
-    dispatch(playSong({ song, index: idx, queue: results }));
+    if (currentSong?.id === song.id) {
+      dispatch(togglePlay());
+    } else {
+      dispatch(playSong({ song, index: idx, queue: results }));
+    }
   };
 
   const handleLike = async (song) => {
@@ -155,7 +159,7 @@ export default function Search() {
                   </div>
 
                   {/* Play Button Overlay */}
-                  <div className="absolute right-6 bottom-6 bg-[#1db954] text-black w-14 h-14 rounded-full flex items-center justify-center shadow-2xl opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition duration-300 hover:scale-105 active:scale-95">
+                  <div className="absolute right-6 bottom-6 bg-[#1db954] text-black w-14 h-14 rounded-full flex items-center justify-center shadow-2xl opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition duration-300 hover:scale-105 active:scale-95 cursor-pointer">
                     {currentSong?.id === topResult.id && isPlaying ? (
                       <Pause size={24} fill="black" />
                     ) : (
@@ -177,13 +181,14 @@ export default function Search() {
                   return (
                     <div 
                       key={song.id} 
-                      className={`flex items-center justify-between p-3.5 hover:bg-neutral-900/60 transition group border-b border-neutral-900 last:border-0 ${
+                      onClick={() => handlePlayTrack(song, index)}
+                      className={`flex items-center justify-between p-3.5 hover:bg-neutral-900/60 transition group border-b border-neutral-900 last:border-0 cursor-pointer ${
                         isCurrent ? 'bg-neutral-900/30' : ''
                       }`}
                     >
                       {/* Left: Play/Pause indicator & Details */}
                       <div className="flex items-center gap-4 min-w-0 flex-1">
-                        <div className="relative w-10 h-10 flex-shrink-0 cursor-pointer" onClick={() => handlePlayTrack(song, index)}>
+                        <div className="relative w-10 h-10 flex-shrink-0">
                           <img src={song.cover} className="w-full h-full rounded object-cover" />
                           <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                             {isCurrent && isPlaying ? (
@@ -207,7 +212,7 @@ export default function Search() {
                       <div className="flex items-center gap-4 text-neutral-400">
                         {/* Favorite button */}
                         <button 
-                          onClick={() => handleLike(song)}
+                          onClick={(e) => { e.stopPropagation(); handleLike(song); }}
                           className={`hover:text-white transition cursor-pointer ${isLiked ? 'text-[#1db954]' : ''}`}
                         >
                           <Heart size={16} fill={isLiked ? '#1db954' : 'none'} />
@@ -216,7 +221,7 @@ export default function Search() {
                         {/* Add to playlist dropdown trigger */}
                         <div className="relative">
                           <button 
-                            onClick={() => setActivePlaylistPopover(activePlaylistPopover === song.id ? null : song.id)}
+                            onClick={(e) => { e.stopPropagation(); setActivePlaylistPopover(activePlaylistPopover === song.id ? null : song.id); }}
                             className="hover:text-white p-1 transition cursor-pointer"
                             title="Add to playlist"
                           >
@@ -272,19 +277,17 @@ export default function Search() {
                 return (
                   <div 
                     key={`all-${song.id}-${index}`}
-                    className={`grid grid-cols-12 items-center p-3 text-sm hover:bg-neutral-900/40 border-b border-neutral-900 last:border-0 transition group ${
+                    onClick={() => handlePlayTrack(song, index)}
+                    className={`grid grid-cols-12 items-center p-3 text-sm hover:bg-neutral-900/40 border-b border-neutral-900 last:border-0 transition group cursor-pointer ${
                       isCurrent ? 'bg-neutral-900/20' : ''
                     }`}
                   >
                     {/* Index / Play */}
                     <div className="col-span-2 sm:col-span-1 text-center relative flex justify-center items-center">
                       <span className="text-neutral-500 group-hover:opacity-0 transition-opacity">{index + 1}</span>
-                      <button 
-                        onClick={() => handlePlayTrack(song, index)}
-                        className="absolute opacity-0 group-hover:opacity-100 text-white transition-opacity cursor-pointer"
-                      >
+                      <div className="absolute opacity-0 group-hover:opacity-100 text-white transition-opacity">
                         {isCurrent && isPlaying ? <Pause size={16} fill="white" /> : <Play size={16} fill="white" className="translate-x-[1px]" />}
-                      </button>
+                      </div>
                     </div>
 
                     {/* Title & Artist */}
@@ -313,7 +316,7 @@ export default function Search() {
                     {/* Duration / Options */}
                     <div className="col-span-2 sm:col-span-1 text-right flex items-center justify-end gap-3 pr-2">
                       <button 
-                        onClick={() => handleLike(song)}
+                        onClick={(e) => { e.stopPropagation(); handleLike(song); }}
                         className={`hover:text-white transition cursor-pointer text-neutral-400 ${isLiked ? 'text-[#1db954]' : ''}`}
                       >
                         <Heart size={14} fill={isLiked ? '#1db954' : 'none'} />

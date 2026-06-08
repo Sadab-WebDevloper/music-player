@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Play, Pause, Heart, Clock, HeartOff } from 'lucide-react';
-import { playSong } from '../redux/slices/playerSlice';
+import { playSong, togglePlay } from '../redux/slices/playerSlice';
 import { toggleFavoriteLocal } from '../redux/slices/playlistSlice';
 import { toggleLikeSong as apiToggleLike } from '../services/api';
 
@@ -15,11 +15,19 @@ export default function Favorites() {
 
   const handlePlayAll = () => {
     if (favorites.length === 0) return;
-    dispatch(playSong({ song: favorites[0], index: 0, queue: favorites }));
+    if (favorites.some(s => s.id === currentSong?.id)) {
+      dispatch(togglePlay());
+    } else {
+      dispatch(playSong({ song: favorites[0], index: 0, queue: favorites }));
+    }
   };
 
   const handlePlayTrack = (song, index) => {
-    dispatch(playSong({ song, index, queue: favorites }));
+    if (currentSong?.id === song.id) {
+      dispatch(togglePlay());
+    } else {
+      dispatch(playSong({ song, index, queue: favorites }));
+    }
   };
 
   const handleUnlike = async (song) => {
@@ -92,19 +100,17 @@ export default function Favorites() {
             return (
               <div 
                 key={song.id} 
-                className={`grid grid-cols-12 items-center p-3 hover:bg-neutral-900/40 border-b border-neutral-900 last:border-0 transition group text-sm ${
+                onClick={() => handlePlayTrack(song, index)}
+                className={`grid grid-cols-12 items-center p-3 hover:bg-neutral-900/40 border-b border-neutral-900 last:border-0 transition group text-sm cursor-pointer ${
                   isCurrent ? 'bg-neutral-900/20' : ''
                 }`}
               >
                 {/* Index / Play */}
                 <div className="col-span-2 sm:col-span-1 text-center relative flex justify-center items-center">
                   <span className="text-neutral-500 group-hover:opacity-0 transition-opacity">{index + 1}</span>
-                  <button 
-                    onClick={() => handlePlayTrack(song, index)}
-                    className="absolute opacity-0 group-hover:opacity-100 text-white transition-opacity cursor-pointer"
-                  >
+                  <div className="absolute opacity-0 group-hover:opacity-100 text-white transition-opacity">
                     {isCurrent && isPlaying ? <Pause size={16} fill="white" /> : <Play size={16} fill="white" className="translate-x-[1px]" />}
-                  </button>
+                  </div>
                 </div>
 
                 {/* Track Title */}
@@ -131,7 +137,7 @@ export default function Favorites() {
                 {/* Duration & Actions */}
                 <div className="col-span-2 sm:col-span-1 text-right flex items-center justify-end gap-3.5 pr-2 text-neutral-400">
                   <button 
-                    onClick={() => handleUnlike(song)}
+                    onClick={(e) => { e.stopPropagation(); handleUnlike(song); }}
                     className="hover:text-red-500 transition duration-200 cursor-pointer"
                     title="Remove from favorites"
                   >

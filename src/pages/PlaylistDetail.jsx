@@ -3,8 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Play, Pause, Trash2, Clock, Trash, Heart } from 'lucide-react';
 import { getPlaylistById, deletePlaylist, removeSongFromPlaylist, toggleLikeSong as apiToggleLike } from '../services/api';
-import { deletePlaylistSuccess, toggleFavoriteLocal } from '../redux/slices/playlistSlice';
-import { playSong } from '../redux/slices/playerSlice';
+import { toggleFavoriteLocal, deletePlaylistSuccess } from '../redux/slices/playlistSlice';
+import { playSong, togglePlay } from '../redux/slices/playerSlice';
 import { ListSkeleton } from '../components/SkeletonLoader';
 
 export default function PlaylistDetail() {
@@ -37,11 +37,19 @@ export default function PlaylistDetail() {
 
   const handlePlayAll = () => {
     if (!playlist || playlist.songs.length === 0) return;
-    dispatch(playSong({ song: playlist.songs[0], index: 0, queue: playlist.songs }));
+    if (playlist.songs.some(s => s.id === currentSong?.id)) {
+      dispatch(togglePlay());
+    } else {
+      dispatch(playSong({ song: playlist.songs[0], index: 0, queue: playlist.songs }));
+    }
   };
 
   const handlePlayTrack = (song, index) => {
-    dispatch(playSong({ song, index, queue: playlist.songs }));
+    if (currentSong?.id === song.id) {
+      dispatch(togglePlay());
+    } else {
+      dispatch(playSong({ song, index, queue: playlist.songs }));
+    }
   };
 
   const handleDeletePlaylist = async () => {
@@ -158,19 +166,17 @@ export default function PlaylistDetail() {
             return (
               <div 
                 key={song.id} 
-                className={`grid grid-cols-12 items-center p-3 hover:bg-neutral-900/40 border-b border-neutral-900 last:border-0 transition group text-sm ${
+                onClick={() => handlePlayTrack(song, index)}
+                className={`grid grid-cols-12 items-center p-3 hover:bg-neutral-900/40 border-b border-neutral-900 last:border-0 transition group text-sm cursor-pointer ${
                   isCurrent ? 'bg-neutral-900/20' : ''
                 }`}
               >
                 {/* Index / Play */}
                 <div className="col-span-2 sm:col-span-1 text-center relative flex justify-center items-center">
                   <span className="text-neutral-500 group-hover:opacity-0 transition-opacity">{index + 1}</span>
-                  <button 
-                    onClick={() => handlePlayTrack(song, index)}
-                    className="absolute opacity-0 group-hover:opacity-100 text-white transition-opacity cursor-pointer"
-                  >
+                  <div className="absolute opacity-0 group-hover:opacity-100 text-white transition-opacity">
                     {isCurrent && isPlaying ? <Pause size={16} fill="white" /> : <Play size={16} fill="white" className="translate-x-[1px]" />}
-                  </button>
+                  </div>
                 </div>
 
                 {/* Track Title */}
@@ -197,13 +203,13 @@ export default function PlaylistDetail() {
                 {/* Duration & Actions */}
                 <div className="col-span-2 sm:col-span-1 text-right flex items-center justify-end gap-3.5 pr-2 text-neutral-400">
                   <button 
-                    onClick={() => handleLike(song)}
+                    onClick={(e) => { e.stopPropagation(); handleLike(song); }}
                     className={`hover:text-white transition cursor-pointer ${isLiked ? 'text-[#1db954]' : ''}`}
                   >
                     <Heart size={14} fill={isLiked ? '#1db954' : 'none'} />
                   </button>
                   <button 
-                    onClick={() => handleRemoveTrack(song.id)}
+                    onClick={(e) => { e.stopPropagation(); handleRemoveTrack(song.id); }}
                     className="hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200 cursor-pointer"
                     title="Remove from playlist"
                   >

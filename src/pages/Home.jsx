@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { playSong } from '../redux/slices/playerSlice';
+import { playSong, togglePlay } from '../redux/slices/playerSlice';
 import { getTrendingLocalSongs, getRecentlyPlayed } from '../services/api';
 import SongCard from '../components/SongCard';
 import { GridSkeleton } from '../components/SkeletonLoader';
@@ -81,7 +81,11 @@ export default function Home() {
   const { title, subtext } = getGreetingData();
 
   const handleSongPlay = (song, index, queue) => {
-    dispatch(playSong({ song, index, queue }));
+    if (currentSong?.id === song.id) {
+      dispatch(togglePlay());
+    } else {
+      dispatch(playSong({ song, index, queue }));
+    }
   };
 
   return (
